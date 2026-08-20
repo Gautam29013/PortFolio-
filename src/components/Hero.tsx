@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Code2, Sparkles, Terminal } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const Github = ({ size = 24, className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
@@ -19,48 +20,45 @@ const LeetCode = ({ size = 24, className = "" }) => (
 
 const roles = ["MERN Stack Developer", "Full Stack Developer", "Web Developer"];
 
-// Typewriter hook: types out then deletes each role in sequence
-function useTypewriter(words: string[], typeSpeed = 180, deleteSpeed = 120, pauseMs = 2000) {
+// Typewriter: slow type left→right, 2s pause, slow delete right→left, then next word
+function useTypewriter(words: string[]) {
+  const TYPE_SPEED   = 150;  // ms per character while typing
+  const DELETE_SPEED = 100;  // ms per character while deleting
+  const PAUSE_MS     = 2000; // ms to hold the full word before deleting
+
   const [displayed, setDisplayed] = useState("");
-  const [wordIdx, setWordIdx] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [wordIdx,   setWordIdx]   = useState(0);
+  const [phase,     setPhase]     = useState<"typing" | "pausing" | "deleting">("typing");
 
   useEffect(() => {
-    const current = words[wordIdx];
+    const word = words[wordIdx];
+    let timer: ReturnType<typeof setTimeout>;
 
-    const tick = () => {
-      if (!isDeleting) {
-        // Typing forward
-        setDisplayed((prev) => {
-          const next = current.slice(0, prev.length + 1);
-          if (next === current) {
-            // Fully typed — pause then start deleting
-            timeoutRef.current = setTimeout(() => setIsDeleting(true), pauseMs);
-          } else {
-            timeoutRef.current = setTimeout(tick, typeSpeed);
-          }
-          return next;
-        });
+    if (phase === "typing") {
+      if (displayed.length < word.length) {
+        // Type one more character
+        timer = setTimeout(() => {
+          setDisplayed(word.slice(0, displayed.length + 1));
+        }, TYPE_SPEED);
       } else {
-        // Deleting backward
-        setDisplayed((prev) => {
-          const next = prev.slice(0, -1);
-          if (next === "") {
-            // Fully deleted — move to next word
-            setIsDeleting(false);
-            setWordIdx((i) => (i + 1) % words.length);
-          } else {
-            timeoutRef.current = setTimeout(tick, deleteSpeed);
-          }
-          return next;
-        });
+        // Fully typed → pause
+        timer = setTimeout(() => setPhase("deleting"), PAUSE_MS);
       }
-    };
+    } else if (phase === "deleting") {
+      if (displayed.length > 0) {
+        // Delete one character from the right
+        timer = setTimeout(() => {
+          setDisplayed((prev) => prev.slice(0, -1));
+        }, DELETE_SPEED);
+      } else {
+        // Fully deleted → move to next word
+        setWordIdx((i) => (i + 1) % words.length);
+        setPhase("typing");
+      }
+    }
 
-    timeoutRef.current = setTimeout(tick, isDeleting ? deleteSpeed : typeSpeed);
-    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
-  }, [wordIdx, isDeleting, words, typeSpeed, deleteSpeed, pauseMs]);
+    return () => clearTimeout(timer);
+  }, [displayed, phase, wordIdx, words]);
 
   return displayed;
 }
@@ -98,12 +96,16 @@ export function Hero() {
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance leading-[1.1]">
             <span className="text-gradient text-glow">Jony Gautam</span>
             <br />
-            <span className="text-3xl md:text-5xl font-semibold mt-4 flex items-center gap-1 flex-wrap" style={{ minHeight: "1.4em" }}>
-              <span className="text-muted-foreground">I&apos;m a&nbsp;</span>
-              <span className="text-gradient text-glow">{typedText}</span>
+            {/* Single-line cycling typewriter: I'm a [MERN Stack Developer|] */}
+            <span
+              className="text-2xl md:text-4xl font-semibold mt-3 flex items-center"
+              style={{ minHeight: "1.6em" }}
+            >
+              <span className="text-white/60 mr-2">I&apos;m a</span>
+              <span className="text-gradient text-glow font-bold">{typedText}</span>
               <span
-                className="inline-block w-[3px] h-[1em] bg-primary ml-0.5 align-middle"
-                style={{ animation: "blink 0.75s step-end infinite" }}
+                className="inline-block w-[3px] rounded-sm bg-primary ml-[2px] align-middle"
+                style={{ height: "1em", animation: "blink 0.8s step-end infinite" }}
               />
             </span>
           </h1>
@@ -197,12 +199,18 @@ export function Hero() {
               {/* Center Abstract Interactive Element */}
               <div className="flex-grow flex flex-col items-center justify-center relative z-20">
                 {/* Outer spinning ring */}
-                <div className="relative w-44 h-44 rounded-full flex items-center justify-center border border-dashed border-primary/40 animate-[spin_20s_linear_infinite]">
+                <div className="relative w-52 h-52 rounded-full flex items-center justify-center border border-dashed border-primary/40 animate-[spin_20s_linear_infinite]">
                   {/* Middle rotating ring */}
-                  <div className="w-36 h-36 rounded-full flex items-center justify-center border border-white/10 animate-[spin_10s_linear_infinite_reverse]">
-                    {/* Inner glowing sphere */}
-                    <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-primary/30 to-cyan-500/20 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-glow relative">
-                      <span className="text-3xl font-black text-white text-glow">JG</span>
+                  <div className="w-44 h-44 rounded-full flex items-center justify-center border border-white/10 animate-[spin_10s_linear_infinite_reverse]">
+                    {/* Profile Photo */}
+                    <div className="w-36 h-36 rounded-full overflow-hidden border-2 border-primary/50 shadow-glow relative">
+                      <Image
+                        src="/profile.jpg"
+                        alt="Jony Gautam"
+                        fill
+                        className="object-cover object-top"
+                        priority
+                      />
                     </div>
                   </div>
                 </div>
