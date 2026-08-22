@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, Mail, Code2, Sparkles, Terminal } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 const Github = ({ size = 24, className = "" }) => (
@@ -168,75 +168,142 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Right Creative Side */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative hidden lg:flex items-center justify-center lg:col-span-5"
-        >
-          {/* Main Floating Container */}
-          <div className="relative w-[380px] h-[480px] animate-float">
-            {/* Pulsing neon outer layer */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-primary via-purple-500 to-cyan-400 rounded-3xl blur opacity-30 animate-pulse-slow"></div>
-            
-            {/* The Glassmorphic Core Panel */}
-            <div className="relative w-full h-full rounded-3xl glass-panel border-white/10 p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
-              {/* Internal Mesh Background */}
-              <div className="absolute inset-0 bg-mesh-grid opacity-20 pointer-events-none" />
-              
-              {/* Corner Accent Orbs */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-400/20 rounded-full blur-2xl pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/20 rounded-full blur-2xl pointer-events-none" />
+        {/* Right Creative Side — 3D Tilt Card */}
+        {(() => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const cardRef = useRef<HTMLDivElement>(null);
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const mouseX = useMotionValue(0);
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const mouseY = useMotionValue(0);
+          const rotateX = useSpring(useTransform(mouseY, [-1, 1], [12, -12]), { stiffness: 200, damping: 20 });
+          const rotateY = useSpring(useTransform(mouseX, [-1, 1], [-12, 12]), { stiffness: 200, damping: 20 });
 
-              {/* Decorative Window Controls */}
-              <div className="flex gap-1.5 relative z-20">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80"></span>
-                <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-              </div>
+          const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            const rect = cardRef.current?.getBoundingClientRect();
+            if (!rect) return;
+            mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 2);
+            mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 2);
+          };
+          const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0); };
 
-              {/* Center Abstract Interactive Element */}
-              <div className="flex-grow flex flex-col items-center justify-center relative z-20">
-                {/* Outer spinning ring */}
-                <div className="relative w-52 h-52 rounded-full flex items-center justify-center border border-dashed border-primary/40 animate-[spin_20s_linear_infinite]">
-                  {/* Middle rotating ring */}
-                  <div className="w-44 h-44 rounded-full flex items-center justify-center border border-white/10 animate-[spin_10s_linear_infinite_reverse]">
-                    {/* Profile Photo */}
-                    <div className="w-36 h-36 rounded-full overflow-hidden border-2 border-primary/50 shadow-glow relative">
-                      <Image
-                        src="/profile.jpg"
-                        alt="Jony Gautam"
-                        fill
-                        className="object-cover object-top"
-                        priority
-                      />
+          return (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="relative hidden lg:flex items-center justify-center lg:col-span-5"
+              style={{ perspective: "1000px" }}
+            >
+              {/* Main Floating Container */}
+              <motion.div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="relative w-[380px] h-[480px] animate-float cursor-pointer"
+              >
+                {/* Pulsing neon outer layer — brighter on hover */}
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-tr from-primary via-purple-500 to-cyan-400 rounded-3xl blur"
+                  initial={{ opacity: 0.3 }}
+                  whileHover={{ opacity: 0.65, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* The Glassmorphic Core Panel */}
+                <div className="relative w-full h-full rounded-3xl glass-panel border-white/10 p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+                  {/* Internal Mesh Background */}
+                  <div className="absolute inset-0 bg-mesh-grid opacity-20 pointer-events-none" />
+
+                  {/* Corner Accent Orbs */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-400/20 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/20 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Decorative Window Controls */}
+                  <div className="flex gap-1.5 relative z-20">
+                    <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                  </div>
+
+                  {/* Center Interactive Element */}
+                  <div className="flex-grow flex flex-col items-center justify-center relative z-20">
+
+                    {/* Floating tag — top left */}
+                    <motion.span
+                      initial={{ opacity: 0, x: -10 }}
+                      whileHover={{ opacity: 1, x: 0 }}
+                      className="absolute top-4 left-4 py-1.5 px-3 rounded-lg bg-card/60 border border-white/5 text-[11px] font-mono text-cyan-400 flex items-center gap-1.5 shadow-sm"
+                      style={{ opacity: 0.7 }}
+                    >
+                      <Terminal size={12} /> Cloud &amp; DevOps
+                    </motion.span>
+
+                    {/* Outer spinning ring — speeds up on hover */}
+                    <motion.div
+                      className="relative w-52 h-52 rounded-full flex items-center justify-center border border-dashed border-primary/40"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      whileHover={{ borderColor: "rgba(168,85,247,0.8)" }}
+                    >
+                      {/* Middle counter-rotating ring */}
+                      <motion.div
+                        className="w-44 h-44 rounded-full flex items-center justify-center border border-white/10"
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      >
+                        {/* Profile Photo with zoom on hover */}
+                        <motion.div
+                          className="w-36 h-36 rounded-full overflow-hidden border-2 border-primary/50 shadow-glow relative"
+                          whileHover={{ scale: 1.1, borderColor: "rgba(168,85,247,1)" }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        >
+                          <Image
+                            src="/profile.jpg"
+                            alt="Jony Gautam"
+                            fill
+                            className="object-cover object-top transition-transform duration-500 hover:scale-110"
+                            priority
+                          />
+                          {/* Overlay shimmer on hover */}
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-cyan-400/10 rounded-full"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Floating tag — bottom right */}
+                    <motion.span
+                      className="absolute bottom-4 right-4 py-1.5 px-3 rounded-lg bg-card/60 border border-white/5 text-[11px] font-mono text-purple-400 flex items-center gap-1.5 shadow-sm"
+                      style={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 1, x: -4 }}
+                    >
+                      <Code2 size={12} /> Full-Stack
+                    </motion.span>
+                  </div>
+
+                  {/* Card Metadata Footer */}
+                  <div className="border-t border-white/5 pt-4 relative z-20 flex justify-between items-center">
+                    <div>
+                      <h3 className="font-extrabold text-sm text-white tracking-wide">JONY GAUTAM</h3>
+                      <p className="text-xs text-muted-foreground">Computer Science Student</p>
+                    </div>
+                    <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary">
+                      <Sparkles size={16} className="animate-pulse" />
                     </div>
                   </div>
                 </div>
-
-                {/* Micro Tech Floating Info Tags */}
-                <span className="absolute top-4 left-4 py-1.5 px-3 rounded-lg bg-card/60 border border-white/5 text-[11px] font-mono text-cyan-400 flex items-center gap-1.5 shadow-sm">
-                  <Terminal size={12} /> Cloud & DevOps
-                </span>
-                <span className="absolute bottom-4 right-4 py-1.5 px-3 rounded-lg bg-card/60 border border-white/5 text-[11px] font-mono text-purple-400 flex items-center gap-1.5 shadow-sm">
-                  <Code2 size={12} /> Full-Stack
-                </span>
-              </div>
-
-              {/* Card Metadata Footer */}
-              <div className="border-t border-white/5 pt-4 relative z-20 flex justify-between items-center">
-                <div>
-                  <h3 className="font-extrabold text-sm text-white tracking-wide">JONY GAUTAM</h3>
-                  <p className="text-xs text-muted-foreground">Computer Science Student</p>
-                </div>
-                <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary">
-                  <Sparkles size={16} className="animate-pulse" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+              </motion.div>
+            </motion.div>
+          );
+        })()}
       </div>
     </section>
   );
