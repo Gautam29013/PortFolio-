@@ -84,16 +84,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col gap-6 lg:col-span-7"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border-white/5 w-fit">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <span className="text-xs md:text-sm font-semibold text-muted-foreground tracking-wide uppercase">
-              Available for new opportunities
-            </span>
-          </div>
-          
+
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance leading-[1.1]">
             <span className="text-gradient text-glow">Jony Gautam</span>
             <br />
