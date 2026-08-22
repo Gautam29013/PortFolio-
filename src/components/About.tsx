@@ -19,21 +19,35 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 max-w-xl"
           >
-            <span className="text-primary font-bold text-sm tracking-widest uppercase mb-3 block">
-              Biography
-            </span>
+
             <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight leading-tight">
               About <span className="text-primary text-glow">Me</span>
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mb-8" />
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "4rem" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mb-8" 
+            />
             
             <div className="text-muted-foreground whitespace-pre-line leading-relaxed text-base md:text-lg flex flex-col gap-6">
-              <p>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 I am a highly motivated Computer Science student with a deep passion for full-stack development, cloud computing, and DevOps engineering. My journey is driven by an insatiable curiosity to build scalable, resilient, and user-centric applications.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 Whether it&apos;s conceptualizing a seamless, fluid frontend experience or architecting complex backend microservices, I thrive on tackling technical challenges. I constantly explore cutting-edge methodologies to deliver robust, production-grade solutions.
-              </p>
+              </motion.p>
             </div>
           </motion.div>
 
@@ -60,9 +74,10 @@ export function About() {
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -10 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-6 rounded-2xl glass-panel glass-panel-hover flex flex-col justify-between group cursor-default relative overflow-hidden min-h-[220px]"
+                className="p-6 rounded-2xl glass-panel glass-panel-hover flex flex-col justify-between group cursor-pointer relative overflow-hidden min-h-[220px]"
               >
                 {/* Micro Border Glow Accents */}
                 <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary to-cyan-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
