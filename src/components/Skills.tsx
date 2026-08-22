@@ -65,7 +65,13 @@ export function Skills() {
           <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">
             My <span className="text-primary text-glow">Skills</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mx-auto" />
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "4rem" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mx-auto" 
+          />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -74,6 +80,7 @@ export function Skills() {
               key={skillGroup.category}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`rounded-3xl p-8 glass-panel border-white/5 hover:bg-gradient-to-br ${skillGroup.theme.glow} ${skillGroup.theme.border} transition-all duration-300 relative group overflow-hidden shadow-lg`}
@@ -85,16 +92,33 @@ export function Skills() {
                 {skillGroup.category}
               </h3>
               
-              <div className="flex flex-wrap gap-3">
+              <motion.div 
+                className="flex flex-wrap gap-3"
+                variants={{
+                  hidden: { opacity: 0 },
+                  show: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1, delayChildren: index * 0.1 + 0.3 }
+                  }
+                }}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+              >
                 {skillGroup.items.map((item) => (
-                  <span
+                  <motion.span
                     key={item}
-                    className={`px-4 py-2.5 rounded-xl border text-sm font-semibold tracking-wide cursor-default transition-all duration-300 hover:scale-105 ${skillGroup.theme.badge}`}
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8 },
+                      show: { opacity: 1, scale: 1 }
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    className={`px-4 py-2.5 rounded-xl border text-sm font-semibold tracking-wide cursor-default transition-all duration-300 ${skillGroup.theme.badge}`}
                   >
                     {item}
-                  </span>
+                  </motion.span>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
