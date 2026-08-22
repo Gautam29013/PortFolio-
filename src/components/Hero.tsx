@@ -4,6 +4,7 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, Mail, Code2, Sparkles, Terminal } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import ConstellationGrid from "@/components/ui/constellation-grid";
 import Image from "next/image";
 import { IconCloud } from "@/components/ui/icon-cloud";
 
@@ -69,8 +70,13 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-background">
-      {/* Background Mesh Grid */}
-      <div className="absolute inset-0 bg-mesh-grid z-0 opacity-[0.25]" />
+      {/* Dynamic Constellation Background */}
+      <div className="absolute inset-0 z-0 opacity-60">
+        <ConstellationGrid isBackground={true} />
+      </div>
+      
+      {/* Background Mesh Grid overlay */}
+      <div className="absolute inset-0 bg-mesh-grid z-0 opacity-[0.15] pointer-events-none" />
       
       {/* Dynamic Glowing Ambient Spheres */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px] pointer-events-none animate-pulse-slow" />
