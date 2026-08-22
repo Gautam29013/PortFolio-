@@ -5,7 +5,7 @@ import { Code2, Terminal, MonitorSmartphone } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="py-28 relative overflow-hidden bg-background">
+    <section id="about" className="py-28 relative overflow-hidden">
       {/* Decorative ambient lighting */}
       <div className="absolute top-1/2 left-[-10%] w-[35vw] h-[35vw] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
       
