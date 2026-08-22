@@ -25,7 +25,7 @@ export function About() {
             <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight leading-tight">
               About <span className="text-primary text-glow">Me</span>
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full mb-8" />
+            <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mb-8" />
             
             <div className="text-muted-foreground whitespace-pre-line leading-relaxed text-base md:text-lg flex flex-col gap-6">
               <p>

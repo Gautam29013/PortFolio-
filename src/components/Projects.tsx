@@ -15,7 +15,7 @@ const projects = [
     tech: ["FastAPI", "MongoDB", "React", "Tailwind CSS", "Docker", "AWS", "GitHub Actions"],
     github: "https://github.com/Gautam29013",
     live: "#",
-    theme: "from-blue-500/20 via-indigo-500/10 to-purple-500/20"
+    theme: "from-blue-500/20 via-indigo-500/10 to-cyan-500/20"
   },
   {
     title: "BookEasy",
@@ -48,7 +48,7 @@ export function Projects() {
           <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">
             Featured <span className="text-primary text-glow">Projects</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">

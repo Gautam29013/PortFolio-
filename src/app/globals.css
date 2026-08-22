@@ -4,6 +4,38 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 232 42% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 232 42% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 232 42% 4%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+  }
+ 
+  .dark {
     --background: 232 42% 4%;
     --foreground: 210 20% 98%;
 
@@ -13,7 +45,7 @@
     --popover: 232 42% 4%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 263 85% 64%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 20% 98%;
 
     --secondary: 232 24% 10%;
@@ -30,9 +62,7 @@
 
     --border: 232 20% 14%;
     --input: 232 20% 12%;
-    --ring: 263 85% 64%;
-
-    --radius: 0.75rem;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -44,8 +74,8 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: radial-gradient(at top left, hsla(263, 85%, 64%, 0.05) 0px, transparent 50%),
-                      radial-gradient(at bottom right, hsla(215, 85%, 64%, 0.03) 0px, transparent 50%);
+    background-image: radial-gradient(at top left, hsla(217, 91%, 60%, 0.05) 0px, transparent 50%),
+                      radial-gradient(at bottom right, hsla(199, 89%, 48%, 0.03) 0px, transparent 50%);
   }
 
   html {
@@ -80,11 +110,11 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-blue-500 to-cyan-400;
   }
 
   .text-glow {
-    text-shadow: 0 0 20px hsla(263, 85%, 64%, 0.4);
+    text-shadow: 0 0 20px hsla(217, 91%, 60%, 0.4);
   }
   
   .bg-mesh-grid {

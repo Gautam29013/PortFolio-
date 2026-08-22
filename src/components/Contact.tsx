@@ -31,7 +31,7 @@ export function Contact() {
           <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">
             Let&apos;s Connect & <span className="text-primary text-glow">Build</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -102,7 +102,7 @@ export function Contact() {
             className="rounded-3xl p-8 md:p-10 glass-panel border-white/5 shadow-2xl relative"
           >
             {/* Ambient Background Form Glow */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-purple-500/10 to-cyan-500/20 rounded-3xl blur opacity-30 -z-10 animate-pulse-slow" />
+            <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-blue-500/10 to-cyan-500/20 rounded-3xl blur opacity-30 -z-10 animate-pulse-slow" />
             
             <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid md:grid-cols-2 gap-6">

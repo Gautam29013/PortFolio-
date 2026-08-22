@@ -6,10 +6,10 @@ const skillsData = [
   {
     category: "Languages",
     theme: {
-      accent: "text-purple-400",
-      border: "border-purple-500/20 hover:border-purple-500/50",
-      badge: "bg-purple-500/5 text-purple-300 border-purple-500/15 hover:border-purple-500/40",
-      glow: "from-purple-500/5 to-transparent"
+      accent: "text-blue-400",
+      border: "border-blue-500/20 hover:border-blue-500/50",
+      badge: "bg-blue-500/5 text-blue-300 border-blue-500/15 hover:border-blue-500/40",
+      glow: "from-blue-500/5 to-transparent"
     },
     items: ["C++", "Java", "TypeScript", "JavaScript", "HTML5", "CSS3"],
   },
@@ -65,7 +65,7 @@ export function Skills() {
           <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">
             My <span className="text-primary text-glow">Skills</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full mx-auto" />
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mx-auto" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">

@@ -36,7 +36,7 @@ export function Certifications() {
           <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">
             Certifications & <span className="text-primary text-glow">Awards</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full mx-auto" />
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mx-auto" />
         </motion.div>
 
         <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
@@ -52,7 +52,7 @@ export function Certifications() {
               {/* Corner Glowing Orb Accent */}
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-500" />
               
-              <div className="p-4 bg-gradient-to-tr from-primary/20 to-purple-500/10 border border-primary/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300 shadow-sm shrink-0">
+              <div className="p-4 bg-gradient-to-tr from-primary/20 to-blue-500/10 border border-primary/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300 shadow-sm shrink-0">
                 <Award size={26} />
               </div>
               <div className="flex flex-col gap-2">
