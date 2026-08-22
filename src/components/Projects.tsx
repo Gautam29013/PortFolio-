@@ -30,7 +30,7 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-28 relative overflow-hidden bg-background">
+    <section id="projects" className="py-28 relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 right-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
       
