@@ -96,12 +96,12 @@ export const WaitlistHero = () => {
   }, [])
 
   const renderedIcons = useMemo(() => {
-    if (!data) return null
+  if (!data) return []
 
-    return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "dark")
-    )
-  }, [data, theme])
+  return Object.values(data.simpleIcons).map((icon) =>
+    renderCustomIcon(icon, theme || "dark")
+  )
+}, [data, theme])
 
   return (
     <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center p-8">

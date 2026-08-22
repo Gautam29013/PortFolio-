@@ -96,11 +96,8 @@ export const IconCloud = React.memo(() => {
   }, [])
 
   const renderedIcons = useMemo(() => {
-    if (!data) return null
-
-    return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "dark")
-    )
+    if (!data) return [];
+    return Object.values(data.simpleIcons).map((icon) => renderCustomIcon(icon, theme || "dark"));
   }, [data, theme])
 
   return (
