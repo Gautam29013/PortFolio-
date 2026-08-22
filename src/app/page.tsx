@@ -15,8 +15,8 @@ export default function Home() {
       <div className="fixed inset-0 z-0 opacity-60">
         <ConstellationGrid isBackground={true} />
       </div>
-      <div className="relative z-10 w-full flex flex-col">
-        <Navbar />
+      <Navbar />
+      <div id="page-content" className="relative z-10 w-full flex flex-col origin-top">
         <Hero />
         <About />
         <Skills />

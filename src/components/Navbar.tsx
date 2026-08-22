@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, animate } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -20,6 +20,38 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    const targetId = href.replace(/.*\#/, "");
+    const elem = document.getElementById(targetId);
+    const content = document.getElementById("page-content");
+    
+    if (elem || href === "/") {
+      const top = href === "/" ? 0 : elem!.getBoundingClientRect().top + window.scrollY - 100;
+      
+      // 1. Fast, performant zoom out (removed expensive blur filter)
+      if (content) {
+        animate(content, { scale: 0.97, opacity: 0.7 }, { duration: 0.2, ease: "easeOut" });
+      }
+      
+      // 2. Faster cinematic scroll
+      animate(window.scrollY, top, {
+        duration: 0.8,
+        ease: [0.65, 0, 0.35, 1], // Smoother, snappier ease curve
+        onUpdate: (latest) => window.scrollTo(0, latest)
+      });
+      
+      // 3. Zoom back in seamlessly before scroll completely finishes
+      setTimeout(() => {
+        if (content) {
+          animate(content, { scale: 1, opacity: 1 }, { duration: 0.4, ease: "easeOut" });
+        }
+      }, 500);
+    }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -46,7 +78,11 @@ export function Navbar() {
             : "bg-transparent border-transparent py-4"
         )}
       >
-        <Link href="/" className="text-2xl font-black tracking-tighter hover:scale-105 transition-transform">
+        <Link 
+          href="/" 
+          onClick={(e) => handleSmoothScroll(e, "/")}
+          className="text-2xl font-black tracking-tighter hover:scale-105 transition-transform"
+        >
           JG<span className="text-primary text-glow">.</span>
         </Link>
 
@@ -56,6 +92,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
+              onClick={(e) => handleSmoothScroll(e, link.href)}
               className="text-sm font-medium text-muted-foreground hover:text-foreground relative transition-colors py-1 group"
             >
               {link.name}
@@ -64,6 +101,7 @@ export function Navbar() {
           ))}
           <Link
             href="#contact"
+            onClick={(e) => handleSmoothScroll(e, "#contact")}
             className="px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-bold shadow-md hover:shadow-glow hover:bg-primary/90 transition-all hover:scale-[1.03] duration-300"
           >
             Hire Me
@@ -115,7 +153,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className="text-lg font-medium text-foreground py-2 border-b border-border/40 hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
                 >
                   {link.name}
                 </Link>
@@ -123,7 +161,7 @@ export function Navbar() {
               <Link
                 href="#contact"
                 className="mt-2 w-full py-3 bg-primary text-primary-foreground font-bold text-center rounded-xl shadow-md"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleSmoothScroll(e, "#contact")}
               >
                 Hire Me
               </Link>
