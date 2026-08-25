@@ -1,10 +1,9 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, Mail, Code2, Sparkles, Terminal } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { IconCloud } from "@/components/ui/icon-cloud";
 
 const Github = ({ size = 24, className = "" }) => (
@@ -66,6 +65,20 @@ function useTypewriter(words: string[]) {
 
 export function Hero() {
   const typedText = useTypewriter(roles);
+
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(mouseY, [-1, 1], [12, -12]), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useTransform(mouseX, [-1, 1], [-12, 12]), { stiffness: 200, damping: 20 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 2);
+    mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 2);
+  };
+  const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0); };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
@@ -161,50 +174,29 @@ export function Hero() {
         </motion.div>
 
         {/* Right Creative Side — 3D Tilt Card */}
-        {(() => {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const cardRef = useRef<HTMLDivElement>(null);
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const mouseX = useMotionValue(0);
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const mouseY = useMotionValue(0);
-          const rotateX = useSpring(useTransform(mouseY, [-1, 1], [12, -12]), { stiffness: 200, damping: 20 });
-          const rotateY = useSpring(useTransform(mouseX, [-1, 1], [-12, 12]), { stiffness: 200, damping: 20 });
-
-          const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            const rect = cardRef.current?.getBoundingClientRect();
-            if (!rect) return;
-            mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 2);
-            mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 2);
-          };
-          const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0); };
-
-          return (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="relative hidden lg:flex items-center justify-center lg:col-span-5"
-              style={{ perspective: "1000px" }}
-            >
-              {/* Main Floating Container */}
-              <motion.div
-                ref={cardRef}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-                whileHover={{ scale: 1.03, y: -15 }}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                className="relative w-full aspect-square max-w-[550px] cursor-pointer"
-              >
-                {/* Clean container for IconCloud */}
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <IconCloud />
-                </div>
-              </motion.div>
-            </motion.div>
-          );
-        })()}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="relative hidden lg:flex items-center justify-center lg:col-span-5"
+          style={{ perspective: "1000px" }}
+        >
+          {/* Main Floating Container */}
+          <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            whileHover={{ scale: 1.03, y: -15 }}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            className="relative w-full aspect-square max-w-[550px] cursor-pointer"
+          >
+            {/* Clean container for IconCloud */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <IconCloud />
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
