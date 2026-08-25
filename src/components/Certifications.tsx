@@ -6,14 +6,29 @@ import { Award, ShieldCheck } from "lucide-react";
 export function Certifications() {
   const certs = [
     {
-      title: "Oracle Cloud Infrastructure Foundations Associate",
+      title: "1st Position in Best Project Awards",
+      issuer: "K.R. Mangalam University",
+      date: "April 24, 2026"
+    },
+    {
+      title: "LLM-Based Knowledge Retrieval System Project",
+      issuer: "Projexa AI & K.R. Mangalam University",
+      date: "May 01, 2026"
+    },
+    {
+      title: "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
       issuer: "Oracle Corporation",
-      date: "Credential ID: OCI-FOUNDATIONS"
+      date: "Credential ID: 103007839OCI25FNDCFA"
+    },
+    {
+      title: "\"Code Canvas\" Visual AI Tool Design Participation",
+      issuer: "K.R. Mangalam University",
+      date: "November 11, 2025"
     },
     {
       title: "IT Specialist: Software Development",
       issuer: "Certiport",
-      date: "Credential ID: CERT-SWDEV"
+      date: "Credential ID: wM8uB-Fa8N"
     }
   ];
 
