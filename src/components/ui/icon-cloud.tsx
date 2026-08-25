@@ -26,7 +26,7 @@ export const cloudProps: Omit<ICloud, "children"> = {
     wheelZoom: false,
     imageScale: 2,
     activeCursor: "default",
-    tooltip: "native",
+    tooltip: "div",
     initial: [0.03, -0.03],
     clickToFront: 500,
     tooltipDelay: 0,
@@ -52,6 +52,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       target: undefined,
       rel: undefined,
       onClick: (e: any) => e.preventDefault(),
+      title: icon.title,
     },
   })
 }
