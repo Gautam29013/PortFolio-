@@ -137,3 +137,29 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* Custom Tooltip for TagCanvas */
+#tcTooltip {
+  background-color: rgba(10, 10, 10, 0.95) !important;
+  color: white !important;
+  padding: 8px 14px !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  pointer-events: none !important;
+  z-index: 100 !important;
+  animation: tooltipPopIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+}
+
+@keyframes tooltipPopIn {
+  0% {
+    opacity: 0;
+    transform: translate(calc(-50% - 15px), calc(-100% - 20px)) scale(0.8) !important;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(calc(-50% - 15px), calc(-100% - 30px)) scale(1) !important;
+  }
+}
