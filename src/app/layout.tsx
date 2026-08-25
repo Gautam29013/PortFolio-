@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jony Gautam | Full Stack Developer",
+  title: "Jony Gautam",
   description: "Portfolio of Jony Gautam, a modern Full Stack Developer specializing in React, Next.js, Node.js, and more.",
   icons: {
     icon: "/favicon.ico",
