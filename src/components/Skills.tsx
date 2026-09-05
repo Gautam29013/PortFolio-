@@ -6,9 +6,9 @@ const skillsData = [
   {
     category: "Languages",
     theme: {
-      accent: "text-blue-400",
+      accent: "text-blue-500 dark:text-blue-400",
       border: "border-blue-500/20 hover:border-blue-500/50",
-      badge: "bg-blue-500/5 text-blue-300 border-blue-500/15 hover:border-blue-500/40",
+      badge: "bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 hover:border-blue-500/40",
       glow: "from-blue-500/5 to-transparent"
     },
     items: ["C++", "Java", "TypeScript", "JavaScript", "HTML5", "CSS3"],
@@ -16,9 +16,9 @@ const skillsData = [
   {
     category: "Frontend",
     theme: {
-      accent: "text-cyan-400",
+      accent: "text-cyan-600 dark:text-cyan-400",
       border: "border-cyan-500/20 hover:border-cyan-500/50",
-      badge: "bg-cyan-500/5 text-cyan-300 border-cyan-500/15 hover:border-cyan-500/40",
+      badge: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/20 hover:border-cyan-500/40",
       glow: "from-cyan-500/5 to-transparent"
     },
     items: ["React", "Next.js", "Tailwind CSS", "Vite", "Framer Motion"],
@@ -26,9 +26,9 @@ const skillsData = [
   {
     category: "Backend & DB",
     theme: {
-      accent: "text-emerald-400",
+      accent: "text-emerald-600 dark:text-emerald-400",
       border: "border-emerald-500/20 hover:border-emerald-500/50",
-      badge: "bg-emerald-500/5 text-emerald-300 border-emerald-500/15 hover:border-emerald-500/40",
+      badge: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20 hover:border-emerald-500/40",
       glow: "from-emerald-500/5 to-transparent"
     },
     items: ["Node.js", "Express.js", "FastAPI", "MongoDB", "SQL", "PostgreSQL"],
@@ -36,9 +36,9 @@ const skillsData = [
   {
     category: "DevOps & Cloud",
     theme: {
-      accent: "text-blue-400",
+      accent: "text-blue-500 dark:text-blue-400",
       border: "border-blue-500/20 hover:border-blue-500/50",
-      badge: "bg-blue-500/5 text-blue-300 border-blue-500/15 hover:border-blue-500/40",
+      badge: "bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 hover:border-blue-500/40",
       glow: "from-blue-500/5 to-transparent"
     },
     items: ["AWS EC2", "AWS ECR", "Docker", "GitHub Actions", "Render", "Vercel"],
@@ -83,12 +83,12 @@ export function Skills() {
               whileHover={{ y: -8 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-3xl p-8 glass-panel border-white/5 hover:bg-gradient-to-br ${skillGroup.theme.glow} ${skillGroup.theme.border} transition-all duration-300 relative group overflow-hidden shadow-lg`}
+              className={`rounded-3xl p-8 glass-panel hover:bg-gradient-to-br ${skillGroup.theme.glow} ${skillGroup.theme.border} transition-all duration-300 relative group overflow-hidden shadow-lg`}
             >
               {/* Shimmer overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               
-              <h3 className={`text-xl font-black mb-6 pb-4 border-b border-white/5 ${skillGroup.theme.accent} tracking-wide`}>
+              <h3 className={`text-xl font-black mb-6 pb-4 border-b border-border/30 ${skillGroup.theme.accent} tracking-wide`}>
                 {skillGroup.category}
               </h3>
               

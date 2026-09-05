@@ -70,9 +70,9 @@ function ProjectCard({ project, idx }: { project: typeof projects[0], idx: numbe
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
        {/* Left Card: Info */}
-       <div className="lg:w-2/5 w-full bg-[#131418] rounded-[2rem] p-10 md:p-12 flex flex-col justify-between border border-white/5 relative group shadow-2xl">
+       <div className="lg:w-2/5 w-full bg-card rounded-[2rem] p-10 md:p-12 flex flex-col justify-between border border-border/40 relative group shadow-2xl">
           <div className="flex justify-between items-start w-full">
-             <h3 className="text-4xl md:text-[2.75rem] font-black text-white uppercase tracking-tighter leading-none">
+             <h3 className="text-4xl md:text-[2.75rem] font-black text-foreground uppercase tracking-tighter leading-none">
                {project.title}
              </h3>
              <span className="text-sm font-semibold text-muted-foreground mt-2 font-mono">
@@ -88,35 +88,35 @@ function ProjectCard({ project, idx }: { project: typeof projects[0], idx: numbe
 
           <div className="mt-12 flex flex-col gap-8">
              <div>
-               <span className="text-xs font-black tracking-widest uppercase text-white mb-4 block">
+                <span className="text-xs font-black tracking-widest uppercase text-foreground mb-4 block">
                  Tech Stack
                </span>
                <div className="flex flex-wrap gap-2.5">
-                 {project.tech.map(t => (
-                   <span key={t} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[11px] font-bold text-white/80 tracking-wider">
-                     {t}
-                   </span>
-                 ))}
+                  {project.tech.map(t => (
+                    <span key={t} className="px-4 py-2 bg-secondary border border-border/60 rounded-full text-[11px] font-bold text-foreground/80 tracking-wider">
+                      {t}
+                    </span>
+                  ))}
                </div>
              </div>
              
              <div className="flex flex-wrap gap-4">
-                {project.live !== "#" && (
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/10 rounded-xl text-xs font-bold text-white tracking-widest uppercase hover:scale-105">
-                    Live Site <ExternalLink size={16} />
-                  </a>
-                )}
-                {project.github !== "#" && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-3 bg-transparent hover:bg-white/5 transition-all duration-300 border border-white/10 rounded-xl text-xs font-bold text-white tracking-widest uppercase hover:scale-105">
-                    Github <GithubIcon className="w-4 h-4" />
-                  </a>
-                )}
+                 {project.live !== "#" && (
+                   <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary/80 transition-all duration-300 border border-border/60 rounded-xl text-xs font-bold text-foreground tracking-widest uppercase hover:scale-105">
+                     Live Site <ExternalLink size={16} />
+                   </a>
+                 )}
+                 {project.github !== "#" && (
+                   <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-3 bg-transparent hover:bg-secondary/50 transition-all duration-300 border border-border/60 rounded-xl text-xs font-bold text-foreground tracking-widest uppercase hover:scale-105">
+                     Github <GithubIcon className="w-4 h-4" />
+                   </a>
+                 )}
              </div>
           </div>
        </div>
 
        {/* Right Card: Image Preview */}
-       <div className="lg:w-3/5 w-full rounded-[2rem] overflow-hidden relative group border border-white/5 bg-[#131418] min-h-[300px]">
+       <div className="lg:w-3/5 w-full rounded-[2rem] overflow-hidden relative group border border-border/40 bg-card min-h-[300px]">
           <Image
             src={project.image}
             alt={project.title}
