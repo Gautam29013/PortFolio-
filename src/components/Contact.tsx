@@ -43,7 +43,7 @@ export function Contact() {
             transition={{ duration: 0.6 }}
             className="flex flex-col justify-center"
           >
-            <h3 className="text-3xl font-black text-white mb-6 tracking-tight">
+            <h3 className="text-3xl font-black text-foreground mb-6 tracking-tight">
               Let&apos;s Build Something Great Together
             </h3>
             <p className="text-muted-foreground mb-12 text-base md:text-lg leading-relaxed font-medium">
@@ -57,7 +57,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 mb-0.5">Email Address</p>
-                  <p className="text-lg text-white font-bold group-hover:text-primary transition-colors">jonygautam29013@gmail.com</p>
+                  <p className="text-lg text-foreground font-bold group-hover:text-primary transition-colors">jonygautam29013@gmail.com</p>
                 </div>
               </a>
 
@@ -67,7 +67,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 mb-0.5">Phone Call</p>
-                  <p className="text-lg text-white font-bold">+91 9315849446</p>
+                  <p className="text-lg text-foreground font-bold">+91 9315849446</p>
                 </div>
               </div>
 
@@ -77,7 +77,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 mb-0.5">Current Location</p>
-                  <p className="text-lg text-white font-bold">India</p>
+                  <p className="text-lg text-foreground font-bold">India</p>
                 </div>
               </div>
 
@@ -87,7 +87,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 mb-0.5">LinkedIn Profile</p>
-                  <p className="text-lg text-white font-bold group-hover:text-primary transition-colors truncate max-w-[200px] sm:max-w-xs">j-g-sharma-b35573322</p>
+                  <p className="text-lg text-foreground font-bold group-hover:text-primary transition-colors truncate max-w-[200px] sm:max-w-xs">j-g-sharma-b35573322</p>
                 </div>
               </a>
             </div>
@@ -99,7 +99,7 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl p-8 md:p-10 glass-panel border-white/5 shadow-2xl relative"
+            className="rounded-3xl p-8 md:p-10 glass-panel border-border/50 shadow-2xl relative"
           >
             {/* Ambient Background Form Glow */}
             <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-blue-500/10 to-cyan-500/20 rounded-3xl blur opacity-30 -z-10 animate-pulse-slow" />
@@ -112,7 +112,7 @@ export function Contact() {
                     type="text" 
                     id="name" 
                     placeholder="John Doe" 
-                    className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-white/5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/45 text-white shadow-inner" 
+                    className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-border/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/45 text-foreground shadow-inner" 
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -121,7 +121,7 @@ export function Contact() {
                     type="email" 
                     id="email" 
                     placeholder="john@example.com" 
-                    className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-white/5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/45 text-white shadow-inner" 
+                    className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-border/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/45 text-foreground shadow-inner" 
                   />
                 </div>
               </div>
@@ -131,7 +131,7 @@ export function Contact() {
                   id="message" 
                   rows={5} 
                   placeholder="Hi Jony, let's collaborate on..." 
-                  className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-white/5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/45 text-white resize-none shadow-inner"
+                  className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-border/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/45 text-foreground resize-none shadow-inner"
                 />
               </div>
               <button 

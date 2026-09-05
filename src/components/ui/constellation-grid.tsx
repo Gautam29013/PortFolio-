@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 interface Node {
     x: number;
@@ -21,16 +22,8 @@ interface ConstellationGridProps {
 
 export default function ConstellationGrid({ className = "", isBackground = false }: ConstellationGridProps) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
-
-    // Sync theme preference
-    useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        setIsDarkMode(mediaQuery.matches);
-        const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-        mediaQuery.addEventListener('change', handler);
-        return () => mediaQuery.removeEventListener('change', handler);
-    }, []);
+    const { resolvedTheme } = useTheme();
+    const isDarkMode = resolvedTheme !== 'light';
 
     useEffect(() => {
         const canvas = canvasRef.current;
