@@ -106,7 +106,7 @@ export function Hero() {
               className="text-2xl md:text-4xl font-semibold mt-3 flex items-center"
               style={{ minHeight: "1.6em" }}
             >
-              <span className="text-white/60 mr-2">I&apos;m a</span>
+              <span className="text-foreground/60 mr-2">I&apos;m a</span>
               <span className="text-gradient text-glow font-bold">{typedText}</span>
               <span
                 className="inline-block w-[3px] rounded-sm bg-primary ml-[2px] align-middle"
@@ -129,18 +129,18 @@ export function Hero() {
             </Link>
             <Link 
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full glass-panel border-white/10 text-foreground font-semibold hover:bg-white/5 transition-all hover:scale-[1.03] duration-300"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full glass-panel border-border/30 text-foreground font-semibold hover:bg-secondary/30 transition-all hover:scale-[1.03] duration-300"
             >
               Contact Me
             </Link>
           </div>
 
-          <div className="flex items-center gap-4 mt-8 border-t border-white/5 pt-6">
+          <div className="flex items-center gap-4 mt-8 border-t border-border/30 pt-6">
             <a 
               href="https://github.com/Gautam29013" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-white/5 rounded-full hover:scale-110 border border-transparent hover:border-white/5"
+              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-secondary/30 rounded-full hover:scale-110 border border-transparent hover:border-border/30"
             >
               <Github size={22} />
               <span className="sr-only">GitHub</span>
@@ -149,7 +149,7 @@ export function Hero() {
               href="https://www.linkedin.com/in/j-g-sharma-b35573322/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-white/5 rounded-full hover:scale-110 border border-transparent hover:border-white/5"
+              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-secondary/30 rounded-full hover:scale-110 border border-transparent hover:border-border/30"
             >
               <Linkedin size={22} />
               <span className="sr-only">LinkedIn</span>
@@ -158,14 +158,14 @@ export function Hero() {
               href="https://leetcode.com/u/Gautam29013/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-white/5 rounded-full hover:scale-110 border border-transparent hover:border-white/5"
+              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-secondary/30 rounded-full hover:scale-110 border border-transparent hover:border-border/30"
             >
               <LeetCode size={22} />
               <span className="sr-only">LeetCode</span>
             </a>
             <a 
               href="mailto:jonygautam29013@gmail.com" 
-              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-white/5 rounded-full hover:scale-110 border border-transparent hover:border-white/5"
+              className="text-muted-foreground hover:text-foreground transition-all p-3 hover:bg-secondary/30 rounded-full hover:scale-110 border border-transparent hover:border-border/30"
             >
               <Mail size={22} />
               <span className="sr-only">Email</span>

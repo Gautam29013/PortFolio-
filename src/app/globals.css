@@ -120,16 +120,16 @@
   .bg-mesh-grid {
     background-size: 40px 40px;
     background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
   }
 
   .glass-panel {
-    @apply bg-card/45 backdrop-blur-md border border-white/5 shadow-glass;
+    @apply bg-card/45 backdrop-blur-md border border-border/40 shadow-glass;
   }
 
   .glass-panel-hover {
-    @apply hover:bg-card/60 hover:border-white/10 hover:shadow-glow transition-all duration-300;
+    @apply hover:bg-card/60 hover:border-border/60 hover:shadow-glow transition-all duration-300;
   }
 
   .hide-scrollbar::-webkit-scrollbar {
