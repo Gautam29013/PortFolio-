@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import { Code2, Terminal, MonitorSmartphone } from "lucide-react";
+import FocusText from "@/components/ui/focus-text";
 
 export function About() {
   return (
     <section id="about" className="py-28 relative overflow-hidden">
       {/* Decorative ambient lighting */}
       <div className="absolute top-1/2 left-[-10%] w-[35vw] h-[35vw] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
-      
+
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* Text Left Column */}
@@ -23,31 +24,41 @@ export function About() {
             <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight leading-tight">
               About <span className="text-primary text-glow">Me</span>
             </h2>
-            <motion.div 
+            <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "4rem" }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mb-8" 
+              className="h-1 bg-gradient-to-r from-primary to-blue-500 rounded-full mb-8"
             />
-            
-            <div className="text-muted-foreground whitespace-pre-line leading-relaxed text-base md:text-lg flex flex-col gap-6">
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                I am a highly motivated Computer Science student with a deep passion for full-stack development, cloud computing, and DevOps engineering. My journey is driven by an insatiable curiosity to build scalable, resilient, and user-centric applications.
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                Whether it&apos;s conceptualizing a seamless, fluid frontend experience or architecting complex backend microservices, I thrive on tackling technical challenges. I constantly explore cutting-edge methodologies to deliver robust, production-grade solutions.
-              </motion.p>
+
+            <div className="flex flex-col gap-8">
+              <FocusText
+                text="I am a highly motivated Computer Science student with a deep passion for full-stack development, cloud computing, and DevOps engineering. My journey is driven by an insatiable curiosity to build scalable, resilient, and user-centric applications."
+                fontSize={1.4}
+                characterStagger={0.012}
+                revealDuration={0.6}
+                blurAmount={8}
+                startScale={0.85}
+                showReplayButton={false}
+                scrub={true}
+                scrollStart="top 85%"
+                scrollEnd="top 40%"
+                className="!min-h-0 py-0 text-muted-foreground leading-relaxed text-base md:text-lg font-normal normal-case"
+              />
+              <FocusText
+                text="Whether it's conceptualizing a seamless, fluid frontend experience or architecting complex backend microservices, I thrive on tackling technical challenges. I constantly explore cutting-edge methodologies to deliver robust, production-grade solutions."
+                fontSize={1.4}
+                characterStagger={0.012}
+                revealDuration={0.6}
+                blurAmount={8}
+                startScale={0.85}
+                showReplayButton={false}
+                scrub={true}
+                scrollStart="top 75%"
+                scrollEnd="top 30%"
+                className="!min-h-0 py-0 text-muted-foreground leading-relaxed text-base md:text-lg font-normal normal-case"
+              />
             </div>
           </motion.div>
 
@@ -81,7 +92,7 @@ export function About() {
               >
                 {/* Micro Border Glow Accents */}
                 <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary to-cyan-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                
+
                 <div className="flex flex-col gap-5">
                   {/* Glowing Icon Container */}
                   <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
