@@ -24,26 +24,26 @@ export function Navbar() {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    
+
     const targetId = href.replace(/.*\#/, "");
     const elem = document.getElementById(targetId);
     const content = document.getElementById("page-content");
-    
+
     if (elem || href === "/") {
       const top = href === "/" ? 0 : elem!.getBoundingClientRect().top + window.scrollY - 100;
-      
+
       // 1. Fast, performant zoom out (removed expensive blur filter)
       if (content) {
         animate(content, { scale: 0.97, opacity: 0.7 }, { duration: 0.2, ease: "easeOut" });
       }
-      
+
       // 2. Faster cinematic scroll
       animate(window.scrollY, top, {
         duration: 0.8,
         ease: [0.65, 0, 0.35, 1], // Smoother, snappier ease curve
         onUpdate: (latest) => window.scrollTo(0, latest)
       });
-      
+
       // 3. Zoom back in seamlessly before scroll completely finishes
       setTimeout(() => {
         if (content) {
@@ -78,8 +78,8 @@ export function Navbar() {
             : "bg-transparent border-transparent py-4"
         )}
       >
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           onClick={(e) => handleSmoothScroll(e, "/")}
           className="text-2xl font-black tracking-tighter hover:scale-105 transition-transform"
         >
